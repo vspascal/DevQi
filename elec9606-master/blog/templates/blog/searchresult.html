@@ -1,0 +1,80 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <div class="container">
+    {% if result_user %}
+            <div class="row clearfix cell3">
+                        <table class="table">
+                                        <thead>
+                    <tr>
+                        <th>
+                            <a> User： </a>
+                        </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                                                        {% for user in result_user %}
+                        <tr>
+                        <td>
+                        <a href="{% url 'blog:user' user.id 'homepage' %}"> {{ user.username }}</a><br>
+            </td>
+            </tr>
+                    {% endfor %}
+            </tbody>
+            </table>
+            </div>
+
+    {% endif %}
+
+    {% if result_blog %}
+        <ul class="pagination">
+            {% for blog in result_blog %}
+                <li>    
+    <div class="row clearfix cell3">
+        <div class="col-md-12 column" >
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Title:</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                             <a href="{% url 'blog:blog' blog.id 'view' %}">{{ blog.blog_title }}</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <a> Author </a>
+                        </th>
+                        <th>
+                            <a herf="{% url 'blog:user' blog.blog_author.id 'homepage' %}">{{ blog.blog_author_id }}</a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                        <p>Blog Content:</p>    
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                        <p>{{ blog.blog_content }}</p>
+                        </td>
+                            
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div><br>
+    </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>
+
+{% endblock %}

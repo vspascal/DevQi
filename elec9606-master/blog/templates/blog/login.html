@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block login %}
+    {% if error_message %}
+        <h3>{{ error_message }}</h3>
+    {% endif %}
+
+    <form action="{% url 'blog:login' %}" method="post">
+        {% csrf_token %}
+        User name: <input type="text" name="name">
+        Password: <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
+
+    {% if not request.user.id %}
+        <a href="{% url 'blog:login' %}">Login</a><br>
+        <a href="{% url 'blog:register' %}">Regist</a>
+    {% else %}
+        <h6>{{ request.user.username }}<a href="{% url 'blog:logoutpage' %}"> Logout</a></h6>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'blog/base.html' %}
+{% block content %}
+    <form action="{% url 'blog:usercontrol' 'register' %}" method="post">
+        {% csrf_token %}
+        User name: <input type="text" name="username"/><br>
+        First name: <input type="text" name="firstname"/><br>
+        Last name: <input type="text" name="lastname"/><br>
+        Password: <input type="password" name="password"/><br>
+        Email: <input type="email" name="email"/><br>
+        <input type="submit" name="Submit"/>
+    </form>
+{% endblock %}

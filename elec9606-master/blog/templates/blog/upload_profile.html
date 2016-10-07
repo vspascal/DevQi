@@ -1,0 +1,45 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+
+    {% if error_message %}
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+{% if request.user %}
+    <form enctype="multipart/form-data" action="{% url 'blog:usercontrol' 'manage' %}" method="post">
+        {% csrf_token %}
+        <div class="container">
+    <div class="row clearfix cell3">
+        <div class="col-md-12 column" >
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">{{ request.user.username }}, please upload your profile</a>
+                </div>
+            </nav>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <a> <input type="file" name="profile"/> </a>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                        <input type="submit" name="Submit"/>  
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+    </form>
+    {% else %}
+        <a>Please </a>            <a href="#" class="col-md-1 col-md-offset-10" data-toggle="modal" data-target="#loginwindow">Log in
+                </a><a>first.</a>
+    {% endif %}
+
+{% endblock %}

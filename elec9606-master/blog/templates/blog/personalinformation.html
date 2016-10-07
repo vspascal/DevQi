@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+User id: {{ User.id }} <br>
+User name: {{ User.username }} <br>
+User firstname: {{ User.first_name }} <br>
+User lastname: {{ User.last_name }} <br>
+User Email: {{ User.email }} <br>
+Is staff: {{ User.is_staff }} <br>
+Date joined: {{ User.date_joined }} <br>
+Last login: {{ User.last_login }} <br>
+<a href="{% url 'blog:personalhomepage' User.id %}">Homepage</a>
+</body>
+</html>
